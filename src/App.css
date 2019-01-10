@@ -30,3 +30,26 @@
     transform: rotate(360deg);
   }
 }
+
+.title {
+  font-weight: lighter;
+}
+
+.buttons {
+  all: unset;
+  border-radius: 15px;
+  font-size: 1rem;
+  height: 2rem;
+  line-height: 1rem;
+  padding: 0.1rem 1rem;
+  background: #61dafb;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  font-weight: lighter;
+}
+
+.buttons-box {
+  margin-top: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
