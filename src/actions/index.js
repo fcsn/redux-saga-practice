@@ -15,3 +15,7 @@ export const fetchUser = () => ({
     type: 'FETCH_USER',
 });
 
+export const fetchUserError = () => ({
+    type: 'FETCH_USER_ERROR',
+});
+

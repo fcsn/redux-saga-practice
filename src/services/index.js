@@ -1,12 +1,11 @@
 import axios, { CancelToken } from 'axios'
+import { CANCEL } from 'redux-saga/effects';
 
-export const getUsers = () => axios.get('https://api.github.com/users')
-
-export function getUser (username) {
+export function getUser (userId) {
     const source = CancelToken.source()
-    const request = axios.get(`/users/${username}`, {
+    const request = axios.get(`https://api.github.com/users?userId=${userId}`, {
         cancelToken: source.token
     })
-    // request[CANCEL] = source.cancel
+    request[CANCEL] = source.cancel
     return request
 }
