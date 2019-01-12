@@ -1,31 +1,24 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
 import { connect } from 'react-redux';
 import * as Actions from './actions';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import MainPage from './pages/MainPage';
+import UsersPage from './pages/UsersPage';
+import Navigation from './components/Navigation';
 
 class App extends Component {
   render() {
-    const { value, store } = this.props
+    const { value } = this.props
     console.log(value)
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <div>
-            <span className="title">You can increase or decrease number.</span>
-            <div className="buttons-box">
-              <button className="buttons" onClick={this.props.incrementAsync}>
-                increase
-              </button>
-              <div>{value}</div>
-              <button className="buttons" onClick={this.props.decrementAsync}>
-                decrease
-              </button>
-            </div>
-          </div>
-        </header>
-      </div>
+      <Router>
+        <div>
+          <Navigation/>
+          <Route exact path="/" component={MainPage}/>
+          <Route path="/users/:id" component={UsersPage}/>
+        </div>
+      </Router>
     );
   }
 }

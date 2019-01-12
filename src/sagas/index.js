@@ -1,5 +1,6 @@
 import { delay } from 'redux-saga';
-import { put, takeEvery, all } from 'redux-saga/effects';
+import { put, takeEvery, all, fork, take } from 'redux-saga/effects';
+import * as api from '../services';
 
 export function* helloSaga() {
     console.log('Hello Sagas!')
@@ -22,6 +23,14 @@ export function* decrementAsync () {
 export function* watchDecrementAsync () {
     yield takeEvery('DECREMENT_ASYNC', decrementAsync)
 }
+
+// const takeEvery = (patternOrChannel, saga, ...args) => fork(
+//     function*() {
+//         while (true) {
+//             const action = yield take(patternOrChannel)
+//             yield fork(saga, ...args.concat(action))
+//         }
+// })
 
 export default function* rootSaga () {
     yield all([
