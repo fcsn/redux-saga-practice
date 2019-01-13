@@ -11,8 +11,9 @@ export const decrementAsync = () => ({
     type: 'DECREMENT_ASYNC',
 });
 
-export const fetchUser = () => ({
+export const fetchUser = userName => ({
     type: 'FETCH_USER',
+    payload: userName
 });
 
 export const fetchUserError = () => ({
