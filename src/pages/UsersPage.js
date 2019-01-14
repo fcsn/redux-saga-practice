@@ -9,11 +9,22 @@ class UsersPage extends React.Component {
         id: this.props.match.params.id,
     }
 
-    componentDidMount () {
+    // componentDidUpdate(prevProps) {
+    //     // Typical usage (don't forget to compare props):
+    //     if (this.props.userID !== prevProps.userID) {
+    //         this.fetchData(this.props.userID);
+    //     }
+    // }
+
+    componentDidMount (prevProps) {
         const { params } = this.props.match
         const { Actions } = this.props;
         console.log(`${params.id} in cdm`)
-        // Actions.fetchUser(params.id);
+        console.log(prevProps)
+        if (!prevProps) {
+            console.log('here');
+            Actions.fetchUser(params.id);
+        }
     }
 
     static getDerivedStateFromProps (props, state) {
@@ -21,13 +32,14 @@ class UsersPage extends React.Component {
         console.log(props.match.params.id)
         if (props.match.params.id !== state.id) {
             console.log('getDerivedStateFromProps')
-            // const { params } = props.match
-            // const { Actions } = props;
-            // Actions.fetchUser(state.id);
+            const { params } = props.match
+            const { Actions } = props;
+            Actions.fetchUser(params.id);
             return {
-                user: props.user,
+                id: props.match.params.id,
             }
         }
+        return null;
     }
 
     render() {
